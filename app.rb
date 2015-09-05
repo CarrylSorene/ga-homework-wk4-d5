@@ -12,43 +12,40 @@ after do
   @db.close
 end
 
-#INDEX
+#HOME
+
 get '/' do
 
-  if params
+  redirect to '/videos'
 
-  puts 'video has been added'
-  puts params
-
-  sql = "select * from tube_videos"
-
-  @db.exec(sql)
-  
-  end
-  
-  erb :show
 end
 
-#ADD
+#INDEX
+get '/videos' do
 
-get 'videos/add'
+  # if params
+  # puts 'video has been added'
+  # puts params
+  
+  sql = "select * from tube_videos"
 
-erb :add
+  @videos = @db.exec(sql)
+  
+  # end
+  
+  erb :index
+end
+
+#NEW
+
+get 'videos/new' do
+  erb :new
+end
+
+#CREATE
 
 #SHOW
 
-post '/show' do
-
-  sql = "insert into tube_videos () values ('#{}', '#{}')"
-
-  @db.exec(sql)
-
-  erb :show
-
-
 #EDIT
-
-
-
 
 #DELETE
