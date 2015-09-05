@@ -4,8 +4,7 @@ require 'pry'
 require 'pg'
 
 before do
-
-@db = PG.connect(dbname: 'tube_app', host: 'localhost')
+  @db = PG.connect(dbname: 'tube_app', host: 'localhost')
 end
 
 after do
@@ -15,37 +14,28 @@ end
 #HOME
 
 get '/' do
-
   redirect to '/videos'
-
 end
 
 #INDEX
 get '/videos' do
-
-  # if params
-  # puts 'video has been added'
-  # puts params
   
   sql = "select * from tube_videos"
 
   @videos = @db.exec(sql)
   
-  # end
-  
-  erb :index
+  erb :videos
 end
 
 #NEW
-
-get 'videos/new' do
+get '/videos/new' do
   erb :new
 end
 
 #CREATE
+post '/videos' do
+  sql = "insert into tube_videos (title, url, genre, description) values ('#{params[:title]}', '#{params[:url]}', '#{params[:genre]}', '#{params[:description
+    ]}') returning *"
 
-#SHOW
-
-#EDIT
-
-#DELETE
+redirect to '/videos'
+end
