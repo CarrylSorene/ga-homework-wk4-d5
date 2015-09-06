@@ -1,10 +1,4 @@
 <p><%= @video['title'] %></p>
-<p><iframe id="player" type="text/html" width="640" height="390" src="<%= @videos['url'] %>" frameborder="0"></iframe>
-
-<%= @video['url'] %></p>
+<p><iframe id="player" type="text/html" width="640" height="390" src="<%= @video['url'] %>" frameborder="0"></iframe></p>
 <p><%= @video['genre'] %></p>
 <p><%= @video['description'] %></p>
-
-<a href="/videos/<%= @video['id'] %>/edit">Edit</a>
-<form action="/videos/<%= @video['id'] %>/delete" method="post">
-<button>Delete</button>
