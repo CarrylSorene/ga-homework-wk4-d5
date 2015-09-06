@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
-require 'pry-byebug'
+require 'pry'
 require 'pg'
 
 before do
@@ -19,13 +19,7 @@ end
 
 #INDEX
 get '/videos/' do
-
-  if params[:title]
-    binding.pry
-      puts 'user has submitted the form'
-      puts params[:title]
-  end
-
+  
   sql = "select * from tube_videos"
 
   @videos = @db.exec(sql)
@@ -53,7 +47,7 @@ end
 get '/videos/:title' do
 
   sql = "select * from tube_videos where title LIKE '%#{params[:title]}%'"
-  @video = @db.exec(sql)
+  @videos = @db.exec(sql)
 
   erb :show
 end
