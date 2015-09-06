@@ -1,23 +1,85 @@
 body {
-
+  background-color: #FFFACD;
+  color: #800000;
+  font-family: 'Cinzel', serif;
 }
 
-h1 {
 
-}
-
-h2 {
-
-}
-
-h1, h2, p {
-
+.wrap {
+  max-width: 1024px;
+  margin: 0 auto;
 }
 
 .nav {
+  display: inline-block;
+  vertical-align: top;
+  width: 200px;
+}
+
+.main {
+  display: inline-block;
+  width: 640px;
+  min-height: 1024px;
+}
+
+form {
+  display: inline-block;
+  margin: 0 auto;
+  width: 400px;
+}
+
+label {
+  margin: 10px;
+}
+
+input, textarea, button {
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px solid #800000;
+}
+
+input {
+  height: 20px;
+  width: 400px;
+  }
+
+textarea {
+  height: 100px;
+  width: 400px;
+}
+
+button {
+  background: #FFA500;
+}
+
+h1 {
+  text-align: center;
+  font-size: 4em;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.8em;
+}
+
+p, li {
+  font-size: 1.4em;  
+}
+
+ul {
+  list-style: none;
+  padding: 10px;
+}
+
+li {
+  padding: 10px;
 
 }
 
 a {
-
+ color: #FFA500;
 }
