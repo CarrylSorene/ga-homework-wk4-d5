@@ -1,9 +1,9 @@
 
 <div class="main">
 <% @videos.each do |video| %>
-<h3><%= @video['title']%></h3>
-<p><iframe id="player" type="text/html" width="640" height="390" src="<%= @video['url'] %>" frameborder="0"></iframe></p>
-<p><%= @video['genre']%></p>
-<p><%= @video['description']%></p>
+<h3><%= video['title'] %></h3>
+<p><iframe id="player" type="text/html" width="640" height="390" src="<%= video['url'] %>" frameborder="0"></iframe></p>
+<p><%= video['genre']%></p>
+<p><%= video['description']%></p>
 <% end %>
 </div>

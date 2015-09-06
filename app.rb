@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
-require 'pry'
+require 'pry-byebug'
 require 'pg'
 
 before do
@@ -14,41 +14,46 @@ end
 #HOME
 
 get '/' do
-  redirect to '/videos'
+  redirect to '/videos/'
 end
 
 #INDEX
-get '/videos' do
-  
+get '/videos/' do
+
+  if params[:title]
+    binding.pry
+      puts 'user has submitted the form'
+      puts params[:title]
+  end
+
   sql = "select * from tube_videos"
 
   @videos = @db.exec(sql)
-  
+
   erb :videos
 end
 
 #NEW
 get '/videos/new' do
   erb :new
+
 end
 
 #CREATE
-post '/videos' do
-  sql = "insert into tube_videos (title, url, genre, description) values ('#{params[:title]}', '#{params[:url]}', '#{params[:genre]}', '#{params[:description
-    ]}')"
+post '/videos/new' do
 
-video = @db.exec(sql)
+  sql = "insert into tube_videos (title, url, genre, description) values ('#{params[:title]}', '#{params[:url]}', '#{params[:genre]}', '#{params[:description]}') returning * "
 
-redirect to '/videos'
+  @videos = @db.exec(sql)
+
+  erb :videos
 end
 
 #SHOW
+get '/videos/:title' do
 
-get '/videos/:id' do
-
-  sql = "select * from tube_videos"
-  video = @db.exec(sql)
+  sql = "select * from tube_videos where title LIKE '%#{params[:title]}%'"
+  @video = @db.exec(sql)
 
   erb :show
-
 end
